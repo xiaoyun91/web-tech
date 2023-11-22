@@ -1,0 +1,25 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background: #0f121d;
+    .nav{
+        display: flex;
+        list-style: none;
+        width: 100%;
+        .active{
+            color: #1890ff;
+            }
+        li{
+            padding: 0px 20px;
+            line-height: 50px;
+            font-size: 16px;
+            color: #FFF;
+            }
+        li:hover{
+            color: #1890ff;
+            cursor: pointer;
+            }
+   }
+
+}
+
