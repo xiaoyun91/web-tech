@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { get } from '../../api/api.js';
 import './index.scss';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper-bundle.css';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
+import { useNavigate } from 'react-router-dom';
 
 import defaultImage from '../../assets/default.jpg';
 import image1 from '../../assets/top10/1.jpeg';
 import image2 from '../../assets/top10/2.jpeg';
 import image3 from '../../assets/top10/3.jpeg';
+import image4 from '../../assets/top10/4.png';
+import image5 from '../../assets/top10/5.jpeg';
+import image6 from '../../assets/top10/6.jpeg';
 SwiperCore.use([Pagination, Autoplay]);
 
 const BookList = ({ list }) => (
@@ -49,10 +53,28 @@ const useBookList = (query) => {
   return list;
 };
 
-const Home = () => {
+const Home = ({}) => {
+
+  const navigate = useNavigate();
+
   const hlist = useBookList('history');
   const tlist = useBookList('technology');
-  const slides = [image1,image2,image3]
+  const elist = useBookList('education');
+  const slist = useBookList('science');
+  const flist = useBookList('food');
+  const slides = [image1,image2,image3,image4,image5,image6]
+
+  // handle click event
+  const handleJump =()=>{
+
+    const targetPage = '/list'
+    navigate(targetPage);
+
+    //define an event
+    const event = new CustomEvent('handleNavigate', { detail: targetPage });
+    window.dispatchEvent(event);
+
+  }
 
   return (
     <div className='recommend'>
@@ -70,10 +92,31 @@ const Home = () => {
         </SwiperSlide>)
       }
     </Swiper>
-      <div className='hotbook'>hot-recommend history</div>
+      <div className='hotbook'>
+        <span>hot-recommend history</span>
+        <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
+        </div>
       <BookList list={hlist} />
-      <div className='hotbook'>hot-recommend technology</div>
+      <div className='hotbook'>
+      <span>hot-recommend technology</span>
+      <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
+        </div>
       <BookList list={tlist} />
+      <div className='hotbook'>
+      <span>hot-recommend education</span>
+      <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
+      </div>
+      <BookList list={elist} />
+      <div className='hotbook'>
+        <span>hot-recommend science</span>
+        <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
+        </div>
+      <BookList list={slist} />
+      <div className='hotbook'>
+      <span>hot-recommend food</span>
+      <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
+      </div>
+      <BookList list={flist} />
     </div>
   );
 };
