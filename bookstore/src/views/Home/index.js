@@ -33,7 +33,7 @@ const BookList = ({ list }) => (
   </div>
 );
 
-const useBookList = (query) => {
+const useBookList = (query, setBookData) => {
   const [list, setList] = useState([]);
   
   useEffect(() => {
@@ -42,26 +42,50 @@ const useBookList = (query) => {
       try {
         const res = await get('/volumes', { q: query, maxResults: 4 });
         setList(res.data.items);
+
+        // update bookData
+        setBookData((bookData) => [
+          ...bookData,
+          { key: query, value: res.data.items }
+        ]);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, [query]);
+  }, [query,setBookData]);
 
   return list;
 };
 
 const Home = ({}) => {
 
+  const [bookData, setBookData] = useState([]);
+  //bookData storage book info to localstorage
+  useEffect(() => {
+    const storedData = localStorage.getItem("bookData");
+    if (storedData && storedData.length) {
+      localStorage.removeItem('bookData');
+    }
+  }, []);
+
   const navigate = useNavigate();
 
-  const hlist = useBookList('history');
-  const tlist = useBookList('technology');
-  const elist = useBookList('education');
-  const slist = useBookList('science');
-  const flist = useBookList('food');
+  const hlist = useBookList('history',  setBookData);
+  const tlist = useBookList('technology',  setBookData);
+  const elist = useBookList('education',  setBookData);
+  const slist = useBookList('science', setBookData);
+  const flist = useBookList('food', setBookData);
+
+  useEffect(() => {
+    // localStorage set bookData item 
+    if (hlist.length > 0 && tlist.length > 0 && elist.length > 0 && slist.length > 0 && flist.length > 0) {
+      console.log('bookData',bookData)
+      localStorage.setItem('bookData', JSON.stringify(bookData));
+    }
+  }, [hlist, tlist, elist, slist, flist, bookData]);
+
   const slides = [image1,image2,image3,image4,image5,image6]
 
   // handle click event
@@ -75,6 +99,14 @@ const Home = ({}) => {
     window.dispatchEvent(event);
 
   }
+  //return 
+  const categoryList = [
+    { category: 'hot-recommend history', list: hlist },
+    { category: 'hot-recommend technology', list: tlist },
+    { category: 'hot-recommend education', list: elist },
+    { category: 'hot-recommend science', list: slist },
+    { category: 'hot-recommend food', list: flist },
+  ];
 
   return (
     <div className='recommend'>
@@ -92,31 +124,17 @@ const Home = ({}) => {
         </SwiperSlide>)
       }
     </Swiper>
-      <div className='hotbook'>
-        <span>hot-recommend history</span>
-        <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
+    {categoryList.map(({ category, list }, index) => (
+      <section key={index}>
+      <div  className="hotbook">
+        <span>{category}</span>
+        <span className="more" onClick={handleJump}>
+          view more&nbsp;&gt;
+        </span>
         </div>
-      <BookList list={hlist} />
-      <div className='hotbook'>
-      <span>hot-recommend technology</span>
-      <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
-        </div>
-      <BookList list={tlist} />
-      <div className='hotbook'>
-      <span>hot-recommend education</span>
-      <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
-      </div>
-      <BookList list={elist} />
-      <div className='hotbook'>
-        <span>hot-recommend science</span>
-        <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
-        </div>
-      <BookList list={slist} />
-      <div className='hotbook'>
-      <span>hot-recommend food</span>
-      <span className='more' onClick={handleJump}>view more&nbsp;&gt;</span>
-      </div>
-      <BookList list={flist} />
+        <BookList list={list} />
+        </section>
+    ))}
     </div>
   );
 };
