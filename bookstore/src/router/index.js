@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom"
 import Home from '../views/Home'
 import About from '../views/About'
 import List from "../views/List"
+import Detail from "../views/Detail"
 
 export default [
   {
@@ -15,6 +16,10 @@ export default [
   {
     path:'/list',
     element:<List/>
+  },
+  {
+    path:'/detail',
+    element:<Detail/>
   },
   {
     path:'/',
