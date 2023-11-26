@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import defaultImage from '../../assets/default.jpg';
 import { get } from '../../api/api.js';
@@ -114,7 +114,10 @@ const List = ({}) => {
     setTotalItems(0);
   }
   }
-
+  useEffect(() => {
+    handleSearch();
+  }, []);
+  
   const handlePageChange = (page) => {
     setCurrentPage(page);
   }
