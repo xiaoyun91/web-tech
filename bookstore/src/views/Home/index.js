@@ -15,7 +15,14 @@ import image5 from '../../assets/top10/5.jpeg';
 import image6 from '../../assets/top10/6.jpeg';
 SwiperCore.use([Pagination, Autoplay]);
 
-const BookList = ({ list }) => (
+const BookList = ({ list }) => {
+  const navigate = useNavigate();
+  const viewDetailFun =(param)=>{
+    const targetPage = '/detail'
+    const state = { id: param };
+    navigate(targetPage,{ state });
+  }
+  return (
   <div className='booklist'>
     {list.map((item) => (
       <div className='book' key={item.id}>
@@ -27,11 +34,12 @@ const BookList = ({ list }) => (
        
         <div className='booktitle'>{item.volumeInfo.title}</div>
         <div className='subtitle'>{item.volumeInfo.subtitle}</div>
-        <div className='detail'>View Details</div>
+        <div className='detail' onClick={() => viewDetailFun(item.id)}>View Details</div>
       </div>
     ))}
   </div>
-);
+  )
+};
 
 const useBookList = (query, setBookData) => {
   const [list, setList] = useState([]);

@@ -6,7 +6,7 @@ const Navbar = ({ onNavigate }) => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  const [list, setList] = useState(['Home', 'List', 'About']);
+  const [list, setList] = useState(['Home', 'List', 'About','Detail']);
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {

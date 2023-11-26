@@ -7,12 +7,20 @@ import noDataImage from '../../assets/no_data.png';
 import { Pagination } from 'antd';
 import { Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 //BookList
 const BookList = ({ list }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
+  }
+
+  const navigate = useNavigate();
+  const viewDetailFun =(param)=>{
+    const targetPage = '/detail'
+    const state = { id: param };
+    navigate(targetPage,{ state });
   }
   return(
   <div className='booklist'>
