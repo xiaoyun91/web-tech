@@ -42,12 +42,6 @@ const useBookList = (query, setBookData) => {
       try {
         const res = await get('/volumes', { q: query, maxResults: 4 });
         setList(res.data.items);
-
-        // update bookData
-        setBookData((bookData) => [
-          ...bookData,
-          { key: query, value: res.data.items }
-        ]);
       } catch (error) {
         console.log(error);
       }
@@ -60,43 +54,22 @@ const useBookList = (query, setBookData) => {
 };
 
 const Home = ({}) => {
-
-  const [bookData, setBookData] = useState([]);
-  //bookData storage book info to localstorage
-  useEffect(() => {
-    const storedData = localStorage.getItem("bookData");
-    if (storedData && storedData.length) {
-      localStorage.removeItem('bookData');
-    }
-  }, []);
-
   const navigate = useNavigate();
 
-  const hlist = useBookList('history',  setBookData);
-  const tlist = useBookList('technology',  setBookData);
-  const elist = useBookList('education',  setBookData);
-  const slist = useBookList('science', setBookData);
-  const flist = useBookList('food', setBookData);
-
-  useEffect(() => {
-    // localStorage set bookData item 
-    if (hlist.length > 0 && tlist.length > 0 && elist.length > 0 && slist.length > 0 && flist.length > 0) {
-      console.log('bookData',bookData)
-      localStorage.setItem('bookData', JSON.stringify(bookData));
-    }
-  }, [hlist, tlist, elist, slist, flist, bookData]);
-
+  const hlist = useBookList('subject:history');
+  const tlist = useBookList('subject:technology');
+  const elist = useBookList('subject:education');
+  const slist = useBookList('subject:science');
+  const flist = useBookList('subject:food');
+  
   const slides = [image1,image2,image3,image4,image5,image6]
 
   // handle click event
   const handleJump =()=>{
 
     const targetPage = '/list'
-    navigate(targetPage);
-
-    //define an event
-    const event = new CustomEvent('handleNavigate', { detail: targetPage });
-    window.dispatchEvent(event);
+    const state = { searchItem: 'history' };
+    navigate(targetPage,{ state });
 
   }
   //return 

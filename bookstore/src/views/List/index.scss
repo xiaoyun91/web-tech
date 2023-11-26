@@ -1,0 +1,176 @@
+
+.all-list{
+   background-color: #f7f9fa;
+   width: 100%;
+   position: relative;
+   padding-top: 10px;
+   height: 100vh;
+   margin-top: 80px;
+   .type{
+      width:50%;
+      margin-left: 18%;
+      text-align: left;
+      margin-top: 20px;
+      .type{
+         margin-right: 20px;
+         font-size: 16px;
+         font-family: PingFangSC-Medium,PingFang SC;
+      }
+   }
+   .input-part{
+      padding-top: 20px;
+      width: 100%;
+      text-align: center;
+      .author_name,.filed_name,.title_name{
+         display: inline-block;
+         font-family: PingFangSC-Medium,PingFang SC;
+         span{
+            margin-right: 10px;
+            display: inline-block;
+            font-size: 16px;
+         }
+         input{
+            outline: none;
+            border: 1px solid #ccc;
+            width:150px;
+            line-height: 26px;
+            border-radius: 13px;
+            margin-right: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            font-weight: 500;
+            padding-left: 10px;
+         }
+      }
+   }
+   .no_data{
+      text-align: center;
+      margin-top: 200px;
+      img{
+         width: 120px;
+         height: 120px;
+      }
+      div{
+         font-size: 16px;
+         font-family: PingFangSC-Medium,PingFang SC;
+         color: rgba(0,0,0,.45);
+      }
+   }
+   .booklist{
+     .book{
+       box-sizing: border-box;
+       cursor: pointer;
+       margin-top: 30px;
+       position: relative;
+       background-color: #fff;
+       padding: 20px 0px;
+       border: 1px solid #e1e7eb;
+       position: relative;
+       display: flex;
+       flex-direction: row;
+       .book_img{
+         width:20%;
+         img{
+            height:200px;
+            display: block;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            max-width: 150px;
+         }
+       }
+       .book_info{
+         width: 80%;
+       }
+      .book_title{
+         color: #000;
+         font-family: PingFangSC-Medium;
+         font-size: 16px;
+         font-weight: 500;
+         letter-spacing: 0;
+         line-height: 20px;
+         text-align: left;
+         padding-left: 10px;
+         white-space: nowrap;  
+         overflow: hidden;
+         text-overflow: ellipsis; 
+            .label{
+               color: #0d59c4;
+               font-size: 20px;
+               display: inline-block;
+               margin-right: 15px;
+            }
+               
+         }
+      .author_name{
+         .label{
+            color: #0d59c4;
+            font-size: 18px;
+            display: inline-block;
+            margin-right: 15px;
+            padding-left: 10px;
+         }
+         .name{
+            color: #000;
+            font-family: PingFangSC-Medium;
+            font-size: 16px;
+         }
+      }
+         .btn_show{
+            color: #0d59c4;
+            padding-left: 10px;
+            font-size: 12px;
+         }
+      .detail{
+             background-color: #f7f9fa;
+             border: 1px solid #e1e7eb;
+             color: #0d59c4;
+             font-family: PingFangSC-Medium;
+             font-size: 12px;
+             font-weight: 500;
+             height: 32px;
+             letter-spacing: 0;
+             line-height: 32px;
+             text-align: center;
+             width: 100px;
+             margin-left: 10px;
+             margin-top: 10px;
+             border-radius: 5px;
+             position: absolute;
+             bottom: 50px;
+         }
+      .detail:hover{
+         color: #fff;
+         background-color:#0d59c4; 
+      }
+      .subtitle{
+         font-family: PingFangSC-Regular;
+         font-size: 14px;
+         font-weight: 400;
+         line-height: 20px;
+         padding: 4px 10px 0 10px;
+         white-space: nowrap;  
+         overflow: hidden;
+         text-overflow: ellipsis; 
+     }
+     .addition{
+      font-size: 12px;
+      font-family: PingFangSC-Regular;
+      padding-left: 12px;
+     }
+      }
+       /* 小屏幕时的样式 */
+       @media screen and (max-width: 750px) {
+          .book {
+             flex: 1 0 50%; 
+             max-width: calc((100% - 5vh) / 2);}
+             .booktitle{
+                font-size: 12px;
+             }
+             .subtitle{
+                font-size: 11px;
+             }
+          }
+  }
+   
+
+}

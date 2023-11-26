@@ -1,6 +1,7 @@
 .recommend{
    background-color: #f7f9fa;
-   padding-top: 30px;
+   margin-top: 80px;
+
     .hotbook{
         color: #000;
         font-family: PingFangSC-Medium,PingFang SC;
@@ -27,9 +28,9 @@
          box-sizing: border-box;
          cursor: pointer;
          display: inline-block;
-         margin:10px;
+         margin:10px auto;
          position: relative;
-         max-width: calc((100% - 10vh) / 4);
+         max-width: calc((100% - 50vh) / 4);
          justify-items: center;
          background-color: #fff;
          padding: 20px 0px;
@@ -44,7 +45,7 @@
             margin-bottom: 10px;
          }
          .booktitle{
-            width: 100%;
+            width: 90%;
             color: #000;
             font-family: PingFangSC-Medium;
             font-size: 16px;
@@ -55,10 +56,10 @@
             padding-left: 10px;
             white-space: nowrap;  
             overflow: hidden;
-            text-overflow: ellipsis;  
-            width: 200px;  
+            text-overflow: ellipsis;    
          }
          .subtitle{
+            width:90%;
             font-family: PingFangSC-Regular;
             font-size: 14px;
             font-weight: 400;
@@ -67,7 +68,6 @@
             white-space: nowrap;  
             overflow: hidden;
             text-overflow: ellipsis;  
-            width: 200px;  
             min-height: 30px;
          }
          .detail{
