@@ -9,6 +9,7 @@ import { Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
+
 //BookList
 const BookList = ({ list }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -52,7 +53,7 @@ const BookList = ({ list }) => {
               </div>
             )}
         <span onClick={handleToggle} className='btn_show'>{isExpanded ? 'Collapse ↑' : 'Expand ↓'}</span>    
-        <div className='detail'>View Details</div>
+        <div className='detail' onClick={() => viewDetailFun(item.id)}>View Details</div>
       </div>
     </div>
     ))}
@@ -84,7 +85,7 @@ const List = ({}) => {
   const handleSearch = () => {
     let searchTerm = ''
   if (authorTerm) {
-    searchTerm += `inauthor:${encodeURIComponent(authorTerm)}`;
+    searchTerm += `inauthor:${encodeURIComponent(authorTerm)}`
   }
 
   if (titleTerm) {
@@ -102,13 +103,14 @@ const List = ({}) => {
   }
   //需要apikey做分页
   // searchTerm += `&start=${encodeURIComponent((currentPage - 1) * itemsPerPage)}&maxResults=${encodeURIComponent(itemsPerPage)}`
-    if(searchTerm){
+ 
+  if(searchTerm){
     //interface
     const fetchData = async () => {
       try {
         const res = await get('/volumes', { q: searchTerm});
         if(res.data){
-        setFilteredBooks(res.data.items)
+        setFilteredBooks(res.data.items || [])
         setTotalItems(res.data.totalItems)
       }
       } catch (error) {
@@ -125,10 +127,10 @@ const List = ({}) => {
   useEffect(() => {
     handleSearch();
   }, []);
-  
   const handlePageChange = (page) => {
     setCurrentPage(page);
   }
+  
   return (
     <div className='all-list'>
       <div className='input-part'>
@@ -139,7 +141,11 @@ const List = ({}) => {
            type="text"
            placeholder="Input Author"
            value={authorTerm}
-           onChange={(e) => setAuthorTerm(e.target.value)}
+           maxLength={50}
+           onChange={(e) => {
+            let inputText = e.target.value.replace(/\s/g, '').toLowerCase()
+            setAuthorTerm(inputText)
+          }}
           />
           </div>
           <div className='filed_name'>
@@ -148,7 +154,8 @@ const List = ({}) => {
            type="text"
            placeholder="Input Filed"
            value={fieldTerm}
-           onChange={(e) => setFieldTerm(e.target.value)}
+           maxLength={50}
+           onChange={(e) => setFieldTerm(e.target.value.replace(/\s/g, '').toLowerCase())}
           />
           </div>
           <div className='title_name'>
@@ -157,7 +164,8 @@ const List = ({}) => {
            type="text"
            placeholder="Input Title"
            value={titleTerm}
-           onChange={(e) => setTitleTerm(e.target.value)}
+           maxLength={50}
+           onChange={(e) => setTitleTerm(e.target.value.replace(/\s/g, '').toLowerCase())}
           />
           </div>
           <Button type="primary" icon={<SearchOutlined/>} onClick={handleSearch}>
@@ -165,7 +173,7 @@ const List = ({}) => {
           </Button>
           </section>
       </div>
-      { filteredBooks||filteredBooks.length>0?(
+      { filteredBooks&&filteredBooks.length>0?(
         <section>
         <BookList list={filteredBooks} />
         <Pagination

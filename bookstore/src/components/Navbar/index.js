@@ -1,6 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './index.scss';
+import book_icon from '../../assets/book.png';
+import cart from '../../assets/cart.png'
+import { Modal, Button, Form, Input } from 'antd';
+
+
+
+const Login =({visible}) =>{
+  const [isModalOpen, setIsModalOpen] = useState(visible);
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  return(
+  <div className='login'>
+   <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      
+    </Modal>
+
+  </div>)
+}
 
 const Navbar = ({ onNavigate }) => {
   const navigate = useNavigate();
@@ -30,17 +53,36 @@ const Navbar = ({ onNavigate }) => {
 
     navigate(targetPage);
   };
+    //login
+    const [isLoginModalVisible, setIsLoginModalVisible] = useState(true);
+    const showLoginModal = () => {
+     setIsLoginModalVisible(true);
+    }
 
+  
   return (
+    <section>
+    <Login visible={isLoginModalVisible} />
     <div className='navbar'>
-      <ul className='nav'>
+      <div className='book_icon'>
+        <div className='icon'>
+         <img src={book_icon}/>
+         <span>your bookstore</span>
+        </div>
+       <ul className='nav'>
         {list.map((item, idx) => (
           <li key={idx} className={current === idx ? 'active' : ''} onClick={() => changeCurrent(idx)}>
             {item}
           </li>
         ))}
-      </ul>
+       </ul>
+      </div>
+      <div className='right-part'> 
+       <span onClick={showLoginModal}>Login</span>
+       <span><img src={cart} /></span>
+      </div>
     </div>
+    </section>
   );
 };
 

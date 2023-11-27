@@ -10,6 +10,7 @@
         display: flex;
         list-style: none;
         width: 100%;
+        padding-left: 20px;
         .active{
             color: #1890ff;
             }
@@ -23,6 +24,44 @@
             color: #1890ff;
             cursor: pointer;
             }
+   }
+   .book_icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .icon{
+        display: flex;
+        flex-direction: column;
+        span{
+            color: #fff;
+            min-width: 100px;
+            display: inline-block;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    }
+    img{
+     width: 30px;
+     height: 30px;
+     margin-left: 35px;
+    }
+   }
+   .right-part{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    span{
+        font-size: 16px;
+        color: #FFF;
+        line-height: 20px;
+    }
+    img{
+        width:20px;
+        height: 20px;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
    }
 
 }
