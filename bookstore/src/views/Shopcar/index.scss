@@ -1,0 +1,124 @@
+
+.flex_row{
+  display: flex;
+}
+.flex_v_c {
+  display: flex;
+  align-items: center;
+}
+.width_ {
+
+}
+.shop_car_wrap {
+  margin: 80px 24px 0;
+  min-width: 1200px;
+  .shop_car_head {
+    border-bottom: 1px solid #bcbcbc;
+    .head_container {
+      padding: 16px ;
+      .all_check_box {
+        cursor: pointer;
+      }
+    }
+  }
+  .shop_item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #bcbcbc;
+  }
+  .prdt_check {
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
+  .un_select {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #bcbcbc;
+    box-sizing: border-box;
+  }
+  .select_ed {
+    width: 14px;
+    height: 14px;
+  }
+  .prdt_thum {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    margin-right: 8px;
+    img {
+      height: 80px;
+    }
+  }
+  .prdt_title {
+    flex-shrink: 0;
+    flex-grow: 1;
+    margin-right: 16px;
+    font-size: 14px;
+    color: #323232;
+    word-break: break-all;
+    word-wrap: break-word;
+    line-height: 20px;
+  }
+  .prdt_amount {
+    flex-shrink: 0;
+    width: 100px;
+    margin-right: 16px;
+    color: #323232;
+    font-size: 13px;
+    line-height: 22px;
+    border-radius: 0;
+  }
+  .prdt_total {
+    flex-shrink: 0;
+    width: 100px;
+    margin-right: 16px;
+    color: #e52222;
+    font-size: 13px;
+    line-height: 22px;
+    text-align: center;
+  }
+  .prdt_edit {
+    flex-shrink: 0;
+    width: 100px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    .edit_btn {
+      padding: 0 4px;
+      color: #323232;
+      font-size: 13px;
+      line-height: 22px;
+      cursor: pointer;
+    }
+  }
+  .payment_total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 24px;
+    margin-top: 24px;
+    .payment_num {
+      flex-shrink: 0;
+      margin-left: 8px;
+      color: #ff2832;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+  }
+  .none_box {
+    padding-top: 60px;
+    img {
+      display: block;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto;
+    }
+    .none_txt {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #8a8888;
+      line-height: 20px;
+      text-align: center;
+    }
+  }
+}

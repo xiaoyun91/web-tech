@@ -3,6 +3,7 @@ import Home from '../views/Home'
 import About from '../views/About'
 import List from "../views/List"
 import Detail from "../views/Detail"
+import Shopcar from "../views/Shopcar"
 
 export default [
   {
@@ -20,6 +21,10 @@ export default [
   {
     path:'/detail',
     element:<Detail/>
+  },
+  {
+    path:'/shopcar',
+    element:<Shopcar/>
   },
   {
     path:'/',
