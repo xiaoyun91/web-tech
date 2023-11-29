@@ -19,7 +19,7 @@ export default [
     element:<List/>
   },
   {
-    path:'/detail',
+    path:'/detail/:id',
     element:<Detail/>
   },
   {

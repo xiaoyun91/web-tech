@@ -20,7 +20,7 @@ const BookList = ({ list }) => {
   const viewDetailFun =(param)=>{
     const targetPage = '/detail'
     const state = { id: param };
-    navigate(targetPage,{ state });
+    navigate(targetPage+'/'+param);
   }
   return (
   <div className='booklist'>
