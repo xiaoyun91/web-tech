@@ -71,6 +71,7 @@ const List = ({}) => {
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  //const Apikey = 'AIzaSyBYWIT5Gs5UOZnaib1rxuC4ADQhIAlsmSE';
 
   //search key word
   //author
@@ -90,25 +91,27 @@ const List = ({}) => {
 
   if (titleTerm) {
     if (searchTerm) {
-      searchTerm += '+'
+      searchTerm += ','
     }
     searchTerm += `intitle:${encodeURIComponent(titleTerm)}`
   }
 
   if (fieldTerm) {
     if (searchTerm) {
-      searchTerm += '+'
+      searchTerm += ','
     }
     searchTerm += `subject:${encodeURIComponent(fieldTerm)}`
   }
-  //需要apikey做分页
-  // searchTerm += `&start=${encodeURIComponent((currentPage - 1) * itemsPerPage)}&maxResults=${encodeURIComponent(itemsPerPage)}`
- 
+  //searchTerm += `&startIndex=${encodeURIComponent((currentPage - 1) * itemsPerPage)}&maxResults=${encodeURIComponent(itemsPerPage)}&key=${encodeURIComponent(Apikey)}`
   if(searchTerm){
     //interface
     const fetchData = async () => {
       try {
-        const res = await get('/volumes', { q: searchTerm});
+        const res = await get('/volumes', { 
+          q: searchTerm,
+          startIndex:encodeURIComponent((currentPage - 1) * itemsPerPage),
+          maxResults:'10',
+        });
         if(res.data){
         setFilteredBooks(res.data.items || [])
         setTotalItems(res.data.totalItems)
@@ -117,7 +120,6 @@ const List = ({}) => {
         console.log(error);
       }
     };
-
     fetchData();
   }else{
     setFilteredBooks([])
@@ -126,9 +128,10 @@ const List = ({}) => {
   }
   useEffect(() => {
     handleSearch();
-  }, []);
+  }, [currentPage]);
   const handlePageChange = (page) => {
     setCurrentPage(page);
+
   }
   
   return (

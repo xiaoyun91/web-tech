@@ -63,6 +63,64 @@
         margin-left: 20px;
     }
    }
+  
+}
+.ant-modal-body{
+    .title{
+        text-align: center;
+        font-family: Aleo,Georgia,serif;
+        color: #3e4b59;
+        font-size: 36px;
+    }
+    .top{
+        text-align: center;
+        font-family: 'Open Sans',Helvetica,Arial,sans-serif; 
+        cursor: pointer;
+        span{
+            color: #32404e;
+            text-decoration: underline;
+        }
+        span:hover{
+            color: #0d59c4;
+        }
+    }
+    .input-part{
+        margin-bottom: 30px;
+        label{
+            display: block;
+            color: #7d848a;
+            text-transform: uppercase;
+            font-style: normal;
+            font-weight: 700;
+            padding-bottom: 7px;
+            margin-top: 20px;
+        }
+        input{
+            background-color: #ebeeee;
+            color: #3e4b59;
+            border: 1px solid #afb9c1;
+            width: 97%;
+            line-height: 40px;
+            border-radius: 2px;
+        }
+    }
+    .other-login,.verify{
+        font-size: 14px;
+        color: #0d59c4;
+        position: absolute;
+        cursor: pointer;
+    }
+    .other-login{
+        bottom: 50px;
+    }
+    .other-login:hover,.verify:hover{
+        text-decoration: underline;
+    }
+    .log-out{
+     font-size: 20px;
+     font-family: Aleo,Georgia,serif;
+     text-align: center;
+    }
 
 }
 
